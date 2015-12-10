@@ -2398,6 +2398,12 @@ func (p *Playlist) HasPendingChanges() bool {
 	return C.sp_playlist_has_pending_changes(p.sp_playlist) == 1
 }
 
+func (p *Playlist) AddTrack(track *Track) bool {
+	// TODO error handling
+	C.sp_playlist_add_tracks(p.sp_playlist, &track.sp_track, 1, 0, p.session.sp_session)
+	return true
+}
+
 // TODO sp_playlist_add_tracks
 // TODO sp_playlist_remove_tracks
 // TODO sp_playlist_reorder_tracks
